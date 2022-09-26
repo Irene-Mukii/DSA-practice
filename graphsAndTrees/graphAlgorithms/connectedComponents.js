@@ -9,6 +9,22 @@ const graph = {
     8:[6]
 }
 
-const conComps = (start) => {
-    if (start == []) return false;
+let count = 0;
+const conComps = (graph,src,visited) => {
+    if(src==null) return count ;
+    
+    count = count + 1;
+   
+    visited.add(src);
+
+    for (let neighbor of graph[src]){
+        for(let parent of graph[neighbor]){ 
+            if (visited.has(parent)) return count;
+            else if (visited.has(neighbor)) return count;
+            else conComps(graph, neighbor, visited);
+        }  
+    }
+    return count;
+    
 }
+console.log(conComps(graph,1, new Set()));
