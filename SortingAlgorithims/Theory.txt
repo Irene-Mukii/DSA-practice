@@ -1,0 +1,13 @@
+Definitions/Terms
+
+Ordering Relation: a method of comparison in programming languages
+
+Inversions: how out of order/sort a sequence is. -> a pair of elements that are out of order w.r.t the ordering Relation
+
+A sorting algorithim: is a sequence of operations that reduces inversions to 0.
+
+Stability (of sorting algirithims) -> key feature is that it preserves order of equal elements
+
+Comparison based sort: require direct method of comparison.
+
+    1. Selection sort:
