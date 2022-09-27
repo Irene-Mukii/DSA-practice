@@ -1,36 +1,49 @@
 const graph = {
-    1: [2],
-    2: [1],
+    1: ['2'],
+    2: ['1'],
     3:[],
-     4:[6],
-     5:[6],
-     6:[4,5,7,8],
-     7:[6],
-     8:[6]
+    4:['6'],
+    5:['6'],
+    6:['4','5','7','8'],
+    7:['6'],
+    8:['6']
 }
 
-let count = 0;
-const conComps = (graph,src,visited) => {
-    
-    for (src=1; src<=8; src++) {
-        const queue = [src];  
-        if(visited.has(src)) count; //check if current node has been traversed if so keep count as is , and increment to next node
 
-        else { //traverse connevted nodes completely
-            while (queue.length>0){
-                const current = queue.shift();
-                
-                for(let neighbor of graph[current]){
-                        if (visited.has(neighbor)) count;
-                        else{
-                            visited.add(neighbor);
-                            queue.push(neighbor);
-                        }
-                }
-            }count=count+1;  //after finishing a traversal count one 
-        }//increment to next node and begin loop
+const conComps = (graph) => {
+    const visited = new Set();
+    let count = 0;
+    for (let node in graph) {   
+            if (explore(graph,node,visited)==true) count=count+1; 
+    //after finishing a traversal count one, increment to next node and begin loop
     }
-    return count;
-    
+    return count; 
 }
-console.log(conComps(graph,1, new Set()));
+
+
+
+const explore = (graph,current,visited) => {//traverse connected nodes 
+    if(visited.has(current)) return false; 
+    //if current node has been traversed,keep count as is , and ++ to next node
+    else{
+    const queue = [current]; 
+    visited.add(current); 
+    
+
+    while (queue.length>0){
+                const src = queue.shift();
+
+               
+                for(let neighbor of graph[src]){
+                        if (!visited.has(neighbor)){
+                        
+                            visited.add(neighbor); 
+                            queue.push(neighbor);
+                            return true
+                        }return false;
+                }
+            } return true;
+    }
+}
+
+console.log(conComps(graph));
