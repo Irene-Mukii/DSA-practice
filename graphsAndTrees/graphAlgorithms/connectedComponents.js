@@ -2,27 +2,33 @@ const graph = {
     1: [2],
     2: [1],
     3:[],
-    4:[6],
-    5:[6],
-    6:[4,5,7,8],
-    7:[6],
-    8:[6]
+     4:[6],
+     5:[6],
+     6:[4,5,7,8],
+     7:[6],
+     8:[6]
 }
 
 let count = 0;
 const conComps = (graph,src,visited) => {
-    if(src==null) return count ;
     
-    count = count + 1;
-   
-    visited.add(src);
+    for (src=1; src<=8; src++) {
+        const queue = [src];  
+        if(visited.has(src)) count; //check if current node has been traversed if so keep count as is , and increment to next node
 
-    for (let neighbor of graph[src]){
-        for(let parent of graph[neighbor]){ 
-            if (visited.has(parent)) return count;
-            else if (visited.has(neighbor)) return count;
-            else conComps(graph, neighbor, visited);
-        }  
+        else { //traverse connevted nodes completely
+            while (queue.length>0){
+                const current = queue.shift();
+                
+                for(let neighbor of graph[current]){
+                        if (visited.has(neighbor)) count;
+                        else{
+                            visited.add(neighbor);
+                            queue.push(neighbor);
+                        }
+                }
+            }count=count+1;  //after finishing a traversal count one 
+        }//increment to next node and begin loop
     }
     return count;
     
