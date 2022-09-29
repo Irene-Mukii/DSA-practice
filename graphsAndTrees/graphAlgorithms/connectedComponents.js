@@ -23,7 +23,7 @@ const conComps = (graph) => {
 
 
 const explore = (graph,current,visited) => {//traverse connected nodes 
-    if(visited.has(current)) return false; 
+    if(visited.has(String(current))) return false; //------alt way instead of manually changing neighbors to sting ...you can use it for all visited checks.
     //if current node has been traversed,keep count as is , and ++ to next node
     else{
     const queue = [current]; 
