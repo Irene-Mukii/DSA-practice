@@ -15,34 +15,26 @@ const largestComponent = (graph) => {
     let largest = 0;
 
     for(let node in graph){
-        //check if node has been traversed
-        if (visited.has(node)) return largest;
-        
-        //add node to traversed/visited
-        visited.add(node);
-        console.log(visited);
         //traverse it and return count connected nodes(component size)
         const componentSize = traverse(graph,node,visited);
-        console.log(componentSize);
         //check if the size is greater than current largest if so replace largest
         if (largest < componentSize) largest=componentSize;
         //iterate to next node
         
     }return largest;
-}
+};
 
-let size= 0;
+
 const traverse = (graph,src,visited) => { //recursion depth first 
-     size+= 1;
+    if (visited.has(src)) return 0; //check if node has been traversed
+    visited.add(src);  //add node to traversed/visited
+    
+    let size= 1;
+
     for (let neighbor of graph[src]){
-        console.log(visited);
-        if(visited.has(neighbor)) return size;
-        else {
-            visited.add(neighbor);
-            traverse(graph,neighbor,visited);
-        }
+            size += traverse(graph,neighbor,visited);
     }
     return size
-}
+};
 
 console.log(largestComponent(graph))
