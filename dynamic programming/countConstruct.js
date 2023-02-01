@@ -5,10 +5,8 @@ function countConstruct (target,wordBank){
     for (let word of wordBank){
         if(target.startsWith(word)){
             const newTarget = target.slice(word.length);
-            if(countConstruct(newTarget,wordBank) === 1){
-                console.log('found one way')
-                count = count + 1;
-            }
+            const numWaysForRest =  countConstruct(newTarget,wordBank);
+            count += numWaysForRest;
         }
     }
     return count;
