@@ -18,3 +18,4 @@ function countConstruct (target,wordBank,memo){
 console.log(countConstruct('purple', ['le','purp','p','ur','purpl'])) //2
 console.log(countConstruct('skateboard', ['bo','rd','ate','t','ska','sk','boar'])) //0
 console.log(countConstruct('enterapotentpot', ['a','p','ent','enter','ot','o','t'])) //4
+console.log(countConstruct('eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef', ['e','eeeee','eeeeeee','eeeeeeeeeeeee','eeeeeeeeeeeeeeeeeeee'])) //0
