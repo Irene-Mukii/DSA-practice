@@ -1,5 +1,5 @@
 
-function countConstruct (target,wordBank,memo){
+function countConstruct (target,wordBank,memo={}){
     if(target in memo) return memo[target];
     if (target === '') return 1;
     let count =0;
